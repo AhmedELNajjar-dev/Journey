@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#000" stroke-width="4"/>
+  <path d="M100 40 C80 60, 70 80, 70 100 S80 140, 100 160" stroke="#000" stroke-width="4" fill="none"/>
+  <text x="50" y="180" font-family="Arial" font-size="24" fill="#000">journey</text>
+</svg>
