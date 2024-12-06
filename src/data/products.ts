@@ -34,9 +34,9 @@ export const products: Product[] = [
     color: 'black',
     stock: {
     
-      'L': 18,
-      'XL': 15,
-      'XXL': 5
+      'L': 0,
+      'XL': 0,
+      'XXL': 0
     }
   }
 ];
