@@ -72,20 +72,22 @@ export default function ProductCard({ product }: ProductCardProps) {
         <p className="text-gray-600 mt-1">{product.description}</p>
         <p className="text-lg font-bold mt-2">{product.price} Egp</p>
 
-        {/* <div className="mt-3">
-          <p className="text-sm font-medium">Available Sizes:</p>
-          <div className="flex flex-wrap gap-2 mt-1">
-            {product.sizes.map((size) => (
-              <span
-                key={size}
-                className="px-2 py-1 text-sm border rounded-md transition-colors hover:bg-gray-50"
-                title={`${product.stock[size]} in stock`}
-              >
-                {size} ({product.stock[size]})
-              </span>
-            ))}
-          </div>
-        </div> */}
+        <div className="mt-3">
+  <p className="text-sm font-medium">Available Sizes:</p>
+  <div className="flex flex-wrap gap-2 mt-1">
+    {product.sizes.map((size) => (
+      <span
+        key={size}
+        className={`px-2 py-1 text-sm border rounded-md transition-colors ${
+          product.stock[size] === 0 ? 'text-red-500' : 'hover:bg-gray-50'
+        }`}
+        // title={product.stock[size] === 0 ? 'Sold Out' : `${product.stock[size]} in stock`}
+      >
+        {product.stock[size] === 0 ? `${size} Sold Out` : `${size} `}
+      </span>
+    ))}
+  </div>
+</div>
 
         <a
           href={`https://wa.me/201117571023?text=Hi! I'm interested in the ${product.name}`}
