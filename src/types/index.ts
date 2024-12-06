@@ -10,7 +10,9 @@ export interface Product {
   stock: Record<Size, number>;
 }
 
+
 export type Size = /*'XS' | 'S' | 'M' |*/ 'L' | 'XL' | 'XXL';
+
 
 export interface FilterOptions {
   gender: string;
