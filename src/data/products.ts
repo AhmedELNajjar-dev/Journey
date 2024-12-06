@@ -13,14 +13,12 @@ export const products: Product[] = [
     sizes: ['L', 'XL', 'XXL'],
     gender: 'unisex',
     color: 'offwhite',
-    // stock: {
-    //   'XS': 0,
-    //   'S': 10,
-    //   'M': 15,
-    //   'L': 20,
-    //   'XL': 8,
-    //   'XXL': 0
-    // }
+    stock: {
+
+      'L': 20,
+      'XL': 8,
+      'XXL': 0
+    }
   },
   {
     id: '2',
@@ -34,13 +32,11 @@ export const products: Product[] = [
     sizes: ['L', 'XL', 'XXL'],
     gender: 'unisex',
     color: 'black',
-    // stock: {
-    //   'XS': 0,
-    //   'S': 0,
-    //   'M': 12,
-    //   'L': 18,
-    //   'XL': 15,
-    //   'XXL': 5
-    // }
+    stock: {
+    
+      'L': 18,
+      'XL': 15,
+      'XXL': 5
+    }
   }
 ];
