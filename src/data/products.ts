@@ -34,7 +34,7 @@ export const products: Product[] = [
     color: 'black',
     stock: {
     
-      'L': 0,
+      'L': 0 ,
       'XL': 0,
       'XXL': 0
     }
