@@ -81,11 +81,12 @@ export default function ProductCard({ product }: ProductCardProps) {
         className={`px-2 py-1 text-sm border rounded-md transition-colors ${
           product.stock[size] === 0 ? 'text-red-500' : 'hover:bg-gray-50'
         }`}
+
         // `${size}(${product.stock[size]}) `
         //title={product.stock[size] === 0 ? 'Sold Out' : `${product.stock[size]} in stock`}
       > 
         {product.stock[size] === 0 ? `${size} Sold Out` : `${size}`}
-                                                        
+                                                       
       </span>
     ))}
   </div>
