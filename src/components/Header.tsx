@@ -52,10 +52,10 @@ export default function Header({ filters, setFilters }: HeaderProps) {
               <span>Size Chart</span>
             </button>
 
-            {/* Mobile Menu Icon */}
+            {/* Mobile Menu Icon
             <button className="p-2 rounded-lg hover:bg-white/10 text-white">
               <Menu size={24} />
-            </button>
+            </button> */}
           </div>
 
           {/* Filters row */}
