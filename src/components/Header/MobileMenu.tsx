@@ -46,10 +46,18 @@ export default function MobileMenu({ filters, setFilters, onSizeChartClick }: Mo
       >
         <div className="p-4 bg-gradient-to-r from-cyan-500 to-blue-500">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold text-white">Filters</h2>
+          <h2 className="text-xl font-bold text-white">Filters</h2>
+          {/* Reset Filters Button */}
+          <button
+          onClick={resetFilters}
+          className="  pl-2 pr-2  ml-14 py-1 flex items-center justify-between bg-red-500 text-white hover:bg-red-600 rounded-lg transition-colors"
+>
+            <span className="">Reset Filters</span> {/* Add margin-right to the text */}
+            <RotateCcw className="ml-2"size={20} />
+          </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-white/10 rounded-lg text-white"
+              className=" hover:bg-white/10 rounded-lg text-white"
             >
               <X size={20} />
             </button>
@@ -95,14 +103,14 @@ export default function MobileMenu({ filters, setFilters, onSizeChartClick }: Mo
             onChange={(value) => setFilters({ ...filters, color: value })}
             isMobile
           />
-          {/* Reset Filters Button */}
+          {/* Reset Filters Button
           <button
             onClick={resetFilters}
             className="w-full mt-4 px-4 py-3 flex items-center justify-between bg-red-500 text-white hover:bg-red-600 rounded-lg transition-colors"
           >
             <span>Reset Filters</span>
             <RotateCcw size={20} />
-          </button>
+          </button> */}
           <button
             onClick={() => {
               onSizeChartClick();
