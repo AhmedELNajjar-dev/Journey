@@ -30,7 +30,7 @@ export default function SizeChartModal({ isOpen, onClose }: SizeChartModalProps)
           <h2 className="text-2xl font-bold mb-4">Size Chart</h2>
           <div className="rounded-lg overflow-hidden">
             <img 
-              src="/images/comingsoon.svg" 
+              src="/images/size-chart.jpg" 
               alt="Hoodie Size Chart" 
               className="w-full h-auto"
               onError={(e) => {
