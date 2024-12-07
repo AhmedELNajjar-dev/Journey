@@ -58,7 +58,7 @@ export default function FilterDropdown({ label, value, options, onChange, isMobi
             className={`w-full px-4 py-3 text-left transition-colors
               ${value === option.value 
                 ? 'bg-blue-50 text-blue-600' 
-                : 'text-gray-700 hover:bg-gray-50'
+                : 'text-gray-700 hover:bg-blue-50'
               }
               ${option.value === '' ? 'border-b border-gray-100' : ''}`}
             onClick={() => {

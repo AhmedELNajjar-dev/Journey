@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, Ruler, RotateCcw } from 'lucide-react';
 import { FilterOptions } from '../../types';
 import FilterDropdown from './FilterDropdown';
 
@@ -12,6 +12,16 @@ interface MobileMenuProps {
 export default function MobileMenu({ filters, setFilters, onSizeChartClick }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Function to reset all filters
+  const resetFilters = () => {
+    setFilters({
+      gender: '',
+      size: '',
+      color: '',
+      searchQuery: ''
+    });
+  };
+
   return (
     <div className="sm:hidden">
       <button
@@ -23,14 +33,16 @@ export default function MobileMenu({ filters, setFilters, onSizeChartClick }: Mo
       </button>
 
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-40
-          ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-40 ${
+          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        }`}
         onClick={() => setIsOpen(false)}
       />
 
       <div
-        className={`fixed right-0 top-0 h-full w-80 max-w-[80vw] bg-white shadow-xl z-50 transition-transform duration-300
-          ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed right-0 top-0 h-full w-80 max-w-[80vw] bg-white shadow-xl z-50 transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
         <div className="p-4 bg-gradient-to-r from-cyan-500 to-blue-500">
           <div className="flex justify-between items-center">
@@ -83,17 +95,27 @@ export default function MobileMenu({ filters, setFilters, onSizeChartClick }: Mo
             onChange={(value) => setFilters({ ...filters, color: value })}
             isMobile
           />
-
+          {/* Reset Filters Button */}
+          <button
+            onClick={resetFilters}
+            className="w-full mt-4 px-4 py-3 flex items-center justify-between bg-red-500 text-white hover:bg-red-600 rounded-lg transition-colors"
+          >
+            <span>Reset Filters</span>
+            <RotateCcw size={20} />
+          </button>
           <button
             onClick={() => {
               onSizeChartClick();
               setIsOpen(false);
             }}
-            className="w-full mt-4 px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+            className="bg-gradient-to-r from-cyan-500 to-blue-500 w-full mt-4 px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
           >
+          
             <span>Size Chart</span>
-            <ChevronRight size={20} />
+            <Ruler size={20} />
           </button>
+
+          
         </div>
       </div>
     </div>
