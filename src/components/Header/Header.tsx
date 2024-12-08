@@ -16,7 +16,7 @@ export default function Header({ filters, setFilters }: HeaderProps) {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-blue-950 via-blue-400 to-sky-950 sticky top-0 z-40 shadow-md">
+      <header className="bg-gradient-to-r from-blue-950 via-blue-400 to-blue-950 sticky top-0 z-40 shadow-md">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap">
             <div className="flex items-center space-x-2 flex-shrink-0">
