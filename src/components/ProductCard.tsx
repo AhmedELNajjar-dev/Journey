@@ -39,7 +39,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           href={`https://wa.me/201117571023?text=Hi! I'm interested in the ${product.name}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 block w-full bg-gradient-to-r from-emerald-500 to-blue-500 text-white text-center py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
+          className="mt-4 block w-full bg-gradient-to-r from-blue-600 to-indigo-900 text-white text-center py-2 rounded-lg hover:bg-green-700 transition-colors duration-200"
         >
           Order via WhatsApp
         </a>

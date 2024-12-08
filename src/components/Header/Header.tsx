@@ -16,18 +16,18 @@ export default function Header({ filters, setFilters }: HeaderProps) {
 
   return (
     <>
-      <header className="bg-gradient-to-r from-cyan-500 to-blue-500 sticky top-0 z-40 shadow-md">
+      <header className="bg-gradient-to-r from-blue-950 via-blue-400 to-sky-950 sticky top-0 z-40 shadow-md">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap">
             <div className="flex items-center space-x-2 flex-shrink-0">
-              <div className="relative w-20 h-20 sm:w-25 sm:h-25">
+              <div className="relative w-20 h-35 sm:w-25 sm:h-30">
                 <img 
                   src="/images/Logo.png" 
                   alt="Journey Logo" 
-                  className="w-full h-full object-contain rounded-full"
+                  className="w-full h-full  rounded-full"
                 />
               </div>
-              <h1 className="text-lg sm:text-2xl font-bold text-white">Journey</h1>
+              <h1 className="text-lg sm:text-2xl font-bold text-white"></h1>
             </div>
 
             <SearchBar
