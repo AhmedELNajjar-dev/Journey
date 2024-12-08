@@ -3,7 +3,7 @@ import Header from './components/Header/Header';
 import ProductCard from './components/ProductCard';
 import Footer from './components/Footer';
 import { products } from './data/products';
-import { FilterOptions } from './types';
+import { FilterOptions, Size, isValidSize, VALID_SIZES } from './types';
 
 function App() {
   const [filters, setFilters] = useState<FilterOptions>({
@@ -19,13 +19,21 @@ function App() {
     return products.filter(product => {
       // If there's a search query, check all relevant fields
       if (searchLower) {
+        // Check if the search term might be a size
+        const isSizeSearch = VALID_SIZES.map(s => s.toLowerCase()).includes(searchLower);
+        
         const matchesName = product.name.toLowerCase().includes(searchLower);
         const matchesDescription = product.description.toLowerCase().includes(searchLower);
         const matchesGender = product.gender.toLowerCase().includes(searchLower);
         const matchesColor = product.color.toLowerCase().includes(searchLower);
-        const matchesSize = product.sizes.some(size => 
-          size.toLowerCase().includes(searchLower)
-        );
+        
+        // For size search, only show products where that size is in stock
+        const matchesSize = isSizeSearch 
+          ? product.sizes.some(size => {
+              const searchSize = searchLower.toUpperCase() as Size;
+              return size === searchSize && product.stock[searchSize] > 0;
+            })
+          : product.sizes.some(size => size.toLowerCase().includes(searchLower));
 
         if (!(matchesName || matchesDescription || matchesGender || matchesColor || matchesSize)) {
           return false;
@@ -34,12 +42,25 @@ function App() {
 
       // Apply filters
       const matchesGender = !filters.gender || product.gender === filters.gender;
-      const matchesSize = !filters.size || product.sizes.includes(filters.size as any);
+      
+      // For size filter, check if the selected size is in stock
+      const matchesSize = !filters.size || (
+        isValidSize(filters.size) && 
+        product.sizes.includes(filters.size) && 
+        product.stock[filters.size] > 0
+      );
+      
       const matchesColor = !filters.color || product.color === filters.color;
 
-      return matchesGender && matchesSize && matchesColor;
+      // If any filter is active and the product doesn't match, hide it
+      if ((filters.gender || filters.size || filters.color) && 
+          (!matchesGender || !matchesSize || !matchesColor)) {
+        return false;
+      }
+
+      return true;
     });
-  }, [filters, products]);
+  }, [filters]);
 
   return (
     <div className="min-h-screen bg-gray-50">
