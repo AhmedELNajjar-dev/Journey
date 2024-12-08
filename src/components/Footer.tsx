@@ -21,7 +21,7 @@ export default function Footer() {
             <div>
               <h3 className="text-xl font-bold mx-auto mb-4 ml-10">Connect With Us</h3>
               <div className="flex space-x-4 ml-10">
-                <a href="https://www.instagram.com/mylz.eg/" className="hover:text-indigo-400 transition-colors">
+                <a href="https://www.instagram.com/mylz.eg/" target="_blank" className="hover:text-indigo-400 transition-colors">
                   <Instagram size={24} />
                 </a>
                  {/* WhatsApp Icon */}
