@@ -21,7 +21,7 @@ export default function Footer() {
             <div>
               <h3 className="text-xl font-bold mx-auto mb-4 ml-10">Connect With Us</h3>
               <div className="flex space-x-4 ml-10">
-                <a href="https://www.instagram.com/miles_eg1/profilecard/?igsh=anhoOHJkbDY2bWtj" className="hover:text-indigo-400 transition-colors">
+                <a href="https://www.instagram.com/mylz.eg/" className="hover:text-indigo-400 transition-colors">
                   <Instagram size={24} />
                 </a>
                  {/* WhatsApp Icon */}
@@ -40,7 +40,7 @@ export default function Footer() {
               <h3 className="flex flex-col items-center ml-30 text-xl font-bold mb-4">Contact Us</h3>
               <div className="flex flex-col items-center ml-30">
                 <img
-                  src="/images/Qrcode1.png"
+                  src="/images/Qrcode.png"
                   alt="Ig QR Code"
                   className="w-40 h-40 bg-white p-2 rounded-lg shadow-lg"
                 />
