@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  ArrowLeft } from 'lucide-react';
+import { Instagram, Copy, ArrowLeft } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 interface CheckoutFormProps {
@@ -235,39 +235,41 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
           />
         </div>
 
-        <div className="space-y-4">
+        {/* WhatsApp button */}
+        <button
+          type="submit"
+          className="w-full py-2 px-4 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+        >
+          Complete Order via WhatsApp
+        </button>
+
+        {/* Instagram and Copy buttons in a single line */}
+        <div className="flex items-center justify-between mt-4 flex items-start gap-4">
           <button
-            type="submit"
-            className="flex justify-center w-full py-2 px-4 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+            type="button"
+            onClick={handleSubmitInstagram}
+            className="flex-1 h-10 bg-gradient-to-r from-pink-500 to-red-600 text-white text-center rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
           >
-            Complete Order via WhatsApp
+            
+            Complete Order via Ig dms
           </button>
 
-          <div className="flex justify-between items-center space-x-2">
-            <button
-              type="button"
-              onClick={handleSubmitInstagram}
-              className="flex-1 mb-12 h-10 bg-gradient-to-r from-pink-500 to-red-600 text-white text-center rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
-            >
-              
-              Complete Order via Instagram
-            </button>
-
-            <div className="w-32">
-              <button
-                type="button"
-                onClick={handleCopyMessage}
-                className="mt-2 w-full h-10 bg-gradient-to-r from-blue-600 to-indigo-900 text-white rounded-lg hover:opacity-90 transition-opacity"
-              >
-                
-                {copied ? 'Copied!' : 'Copy Only'}
-              </button>
-              <p className="text-xs text-gray-500 mt-2 text-center">
-                Press to copy info and paste it into Instagram DMs
-              </p>
-            </div>
-          </div>
+          <button
+            type="button"
+            onClick={handleCopyMessage}
+            className="flex items-center py-2 px-4 bg-gradient-to-r from-blue-600 to-indigo-900 text-white rounded-lg hover:opacity-90 transition-opacity"
+          >
+            
+            {copied ? 'Copied!' : 'Copy'}
+          </button>
+          
         </div>
+
+        {/* Description under the Copy button */}
+        <p className=" items-center text-xs text-red-500 mt-2 text-center">
+            *Press copy to copy info and paste it into Ig DMs*
+          </p>
+
       </form>
     </div>
   );
