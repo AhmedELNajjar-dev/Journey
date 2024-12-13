@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft } from 'lucide-react';
+import {  ArrowLeft } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 interface CheckoutFormProps {
@@ -20,7 +20,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
     name: '',
     phone: '',
     address: '',
-    additionalInfo: ''
+    additionalInfo: '',
   });
 
   const [errors, setErrors] = useState({
@@ -28,6 +28,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
     phone: '',
     address: '',
   });
+  const [copied, setCopied] = useState(false);
 
   const validateFields = (): boolean => {
     const phonePattern = /^(010|011|012|015)\d{8}$/;
@@ -49,9 +50,9 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
 
     if (!validateFields()) return;
 
-    const orderDetails = state.items.map(item =>
-      `${item.product.name} (Size: ${item.selectedSize}, Quantity: ${item.quantity})`
-    ).join('\n');
+    const orderDetails = state.items
+      .map((item) => `${item.product.name} (Size: ${item.selectedSize}, Quantity: ${item.quantity})`)
+      .join('\n');
 
     const message = `New Order:\n\n` +
       `Customer Details:\n` +
@@ -76,9 +77,9 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
 
     if (!validateFields()) return;
 
-    const orderDetails = state.items.map(item =>
-      `${item.product.name} (Size: ${item.selectedSize}, Quantity: ${item.quantity})`
-    ).join('\n');
+    const orderDetails = state.items
+      .map((item) => `${item.product.name} (Size: ${item.selectedSize}, Quantity: ${item.quantity})`)
+      .join('\n');
 
     const message = `New Order:\n\n` +
       `Customer Details:\n` +
@@ -101,9 +102,9 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
   const handleCopyMessage = () => {
     if (!validateFields()) return;
 
-    const orderDetails = state.items.map(item =>
-      `${item.product.name} (Size: ${item.selectedSize}, Quantity: ${item.quantity})`
-    ).join('\n');
+    const orderDetails = state.items
+      .map((item) => `${item.product.name} (Size: ${item.selectedSize}, Quantity: ${item.quantity})`)
+      .join('\n');
 
     const message = `New Order:\n\n` +
       `Customer Details:\n` +
@@ -115,7 +116,8 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
       `Total: ${state.total} EGP`;
 
     navigator.clipboard.writeText(message).then(() => {
-      alert("Message copied to clipboard! Now you can paste it into Instagram DM.");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }).catch(err => {
       alert("Failed to copy message: " + err);
     });
@@ -242,29 +244,29 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
           </button>
 
           <div className="flex justify-between items-center space-x-2">
-  <button
-    type="button"
-    onClick={handleSubmitInstagram}
-    className="flex-1 mb-12 h-10 bg-gradient-to-r from-pink-500 to-red-600 text-white text-center rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
-  >
-    Complete Order via Instagram
-  </button>
+            <button
+              type="button"
+              onClick={handleSubmitInstagram}
+              className="flex-1 mb-12 h-10 bg-gradient-to-r from-pink-500 to-red-600 text-white text-center rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap"
+            >
+              
+              Complete Order via Instagram
+            </button>
 
-  <div className="w-32">
-    <button
-      type="button"
-      onClick={handleCopyMessage}
-      className="mt-2 w-full h-10 bg-gradient-to-r from-blue-600 to-indigo-900 text-white rounded-lg hover:opacity-90 transition-opacity"
-    >
-      Copy Only
-    </button>
-    <p className="text-xs text-gray-500 mt-2 text-center">
-      Press to copy info and paste it into Instagram DMs
-    </p>
-  </div>
-</div>
-
-
+            <div className="w-32">
+              <button
+                type="button"
+                onClick={handleCopyMessage}
+                className="mt-2 w-full h-10 bg-gradient-to-r from-blue-600 to-indigo-900 text-white rounded-lg hover:opacity-90 transition-opacity"
+              >
+                
+                {copied ? 'Copied!' : 'Copy Only'}
+              </button>
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                Press to copy info and paste it into Instagram DMs
+              </p>
+            </div>
+          </div>
         </div>
       </form>
     </div>
