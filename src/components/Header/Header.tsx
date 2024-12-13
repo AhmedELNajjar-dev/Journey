@@ -5,6 +5,8 @@ import SearchBar from './SearchBar';
 import FilterDropdown from './FilterDropdown';
 import MobileMenu from './MobileMenu';
 import SizeChartModal from '../SizeChartModal';
+import CartIcon from '../Cart/CartIcon';
+import CartModal from '../Cart/CartModal';
 
 interface HeaderProps {
   filters: FilterOptions;
@@ -13,6 +15,7 @@ interface HeaderProps {
 
 export default function Header({ filters, setFilters }: HeaderProps) {
   const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
     <>
@@ -24,7 +27,7 @@ export default function Header({ filters, setFilters }: HeaderProps) {
                 <img 
                   src="/images/Logo.png" 
                   alt="Journey Logo" 
-                  className="w-full h-full  rounded-full"
+                  className="w-full h-full rounded-full"
                 />
               </div>
               <h1 className="text-lg sm:text-2xl font-bold text-white"></h1>
@@ -35,13 +38,17 @@ export default function Header({ filters, setFilters }: HeaderProps) {
               onChange={(value) => setFilters({ ...filters, searchQuery: value })}
             />
 
-            <button
-              onClick={() => setIsSizeChartOpen(true)}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
-            >
-              <Ruler size={20} />
-              <span>Size Chart</span>
-            </button>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsSizeChartOpen(true)}
+                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+              >
+                <Ruler size={20} />
+                <span>Size Chart</span>
+              </button>
+
+              <CartIcon onClick={() => setIsCartOpen(true)} />
+            </div>
 
             <MobileMenu 
               filters={filters} 
@@ -91,6 +98,11 @@ export default function Header({ filters, setFilters }: HeaderProps) {
       <SizeChartModal 
         isOpen={isSizeChartOpen}
         onClose={() => setIsSizeChartOpen(false)}
+      />
+
+      <CartModal
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
       />
     </>
   );

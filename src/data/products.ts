@@ -12,7 +12,7 @@ export const products: Product[] = [
     ],
     sizes: ['L', 'XL', 'XXL'],
     gender: 'unisex',
-    color: 'beige',
+    color: 'offwhite',
     stock: {
       'L': 20,
       'XL': 8,
@@ -48,7 +48,7 @@ export const products: Product[] = [
     ],
     sizes: ['L', 'XL', 'XXL'],
     gender: 'unisex',
-    color: 'offwhite',
+    color: 'beige',
     stock: {
       'L': 15,
       'XL': 10,
