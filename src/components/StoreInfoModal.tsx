@@ -31,18 +31,18 @@ export default function StoreInfoModal({ isOpen, onClose }: StoreInfoModalProps)
           <div className="p-6">
             <h2 className="text-2xl font-bold mb-6">Store Info</h2>
             
-            <div className="space-y-6">
+            <div className="space-y-2"> {/*it was 6*/}
               <div className="flex items-start gap-4">
                 <Truck className="flex-shrink-0 w-6 h-6 text-blue-500" />
                 <div>
                   <h3 className="font-semibold text-lg">Shipping Information</h3>
-                  <p className="text-gray-600">Shipping fees calculated at checkout</p>
+                  <p className="text-gray-600">Shipping fees calculated with order confirmation </p>
                   <p className="text-gray-600">Estimated delivery within 1-6 working days</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <RotateCcw className="flex-shrink-0 w-6 h-6 text-blue-500" />
+                {/* <RotateCcw className="flex-shrink-0 w-6 h-6 text-blue-500" />
                 <div>
                   <h3 className="font-semibold text-lg">Returns</h3>
                   <p className="text-gray-600">Returns allowed within 14 days</p>
@@ -52,7 +52,7 @@ export default function StoreInfoModal({ isOpen, onClose }: StoreInfoModalProps)
                   >
                     View full policy <ArrowRight size={16} />
                   </button>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex items-start gap-4">

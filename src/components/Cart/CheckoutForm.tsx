@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Instagram, Copy, ArrowLeft } from 'lucide-react';
+import { Instagram, Copy, ArrowLeft, Banknote, Truck } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
 interface CheckoutFormProps {
@@ -125,6 +125,8 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
 
   return (
     <div className="p-4">
+     
+
       <button
         onClick={onBack}
         className="mb-4 flex items-center bg-blue-600 text-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2 px-6 rounded-full shadow-lg transition-all duration-300"
@@ -234,7 +236,16 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
             onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
           />
         </div>
+        <div className="ml-5 flex items-center mb-2">
+  <Truck className="w-5 h-5 text-blue-500 flex-shrink-0" />
+  <p className="ml-3 text-gray-500 text-xs">Delivery within 1-6 working days. Shipping fees calculated with order confirmationx</p>
+  
+</div>
 
+<div className="ml-5 flex items-center mb-2">
+  <Banknote className="w-5 h-5 text-blue-500 flex-shrink-0" />
+  <p className="ml-3 text-gray-500 text-xs">Cash on delivery</p>
+</div>     
         {/* WhatsApp button */}
         <button
           type="submit"
