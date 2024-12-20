@@ -158,7 +158,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
     if (!handleOrder()) return;
 
     const message = createOrderMessage();
-    const whatsappUrl = `https://wa.me/201117571023?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/201159733443?text=${encodeURIComponent(message)}`;
     
     onClose();
     window.open(whatsappUrl, '_blank');
@@ -169,7 +169,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
     if (!handleOrder()) return;
 
     const message = createOrderMessage();
-    const instagramUrl = `https://ig.me/m/a.mamdouh_elnajjar_?text=${encodeURIComponent(message)}`;
+    const instagramUrl = `https://ig.me/m/mylz.eg?text=${encodeURIComponent(message)}`;
     
     onClose();
     window.open(instagramUrl, '_blank');
