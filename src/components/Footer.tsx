@@ -54,7 +54,7 @@ export default function Footer() {
           <div className="mt-8 text-center">
             <p className="text-lg">Delivery within 1-6 working days</p>
             <div className="flex items-center justify-center gap-2 mt-2">
-              <p className="text-lg">Returns allowed</p>
+              {/* <p className="text-lg">Returns allowed</p> */}
               <button
                 onClick={() => setIsStoreInfoOpen(true)}
                 className="inline-flex items-center text-white hover:text-blue-200 transition-colors"

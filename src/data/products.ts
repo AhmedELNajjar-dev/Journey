@@ -14,9 +14,9 @@ export const products: Product[] = [
     gender: 'unisex',
     color: 'black',
     stock: {
-      'L': 20,
+      'L': 8,
       'XL': 8,
-      'XXL': 0
+      'XXL': 8
     }
   },
   {
@@ -51,9 +51,9 @@ export const products: Product[] = [
     gender: 'unisex',
     color: 'black',
     stock: {
-      'L': 0,
-      'XL': 0,
-      'XXL': 0
+      'L': 8,
+      'XL': 8,
+      'XXL': 8
     }
   },
   {
@@ -70,9 +70,9 @@ export const products: Product[] = [
     gender: 'unisex',
     color: 'black',
     stock: {
-      'L': 0,
-      'XL': 0,
-      'XXL': 0
+      'L': 8,
+      'XL': 8,
+      'XXL': 8
     }
   }
 ];
