@@ -142,7 +142,10 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
     const orderDetails = state.items
       .map((item) => `${item.product.name} (Size: ${item.selectedSize}, Quantity: ${item.quantity})`)
       .join('\n');
-
+  
+    const shippingFee = 50; // رسوم الشحن
+    const finalTotal = state.total + shippingFee; // المجموع النهائي مع الشحن
+  
     return `New Order:\n\n` +
       `Customer Details:\n` +
       `Name: ${formData.name}\n` +
@@ -150,7 +153,8 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
       `Address: ${formData.address}\n` +
       `Additional Info: ${formData.additionalInfo}\n\n` +
       `Order Items:\n${orderDetails}\n\n` +
-      `Total: ${state.total} EGP`;
+      `Shipping Fee: ${shippingFee} EGP\n` +
+      `Total (Including Shipping): ${finalTotal} EGP`;
   };
 
   const handleSubmitWhatsApp = (e: React.FormEvent) => {
