@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: 'Stellar Art Hoodie',
     description: 'Immerse yourself in cosmic elegance—a timeless blend of classical art and celestial charm.',
     price: 800,
-    discountPrice: 600,
+    discountPrice: 600, // Discounted price added
     images: [
       
       '/images/products/Art/1-art.png'
@@ -15,9 +15,9 @@ export const products: Product[] = [
     gender: 'unisex',
     color: 'black',
     stock: {
-      'L': 8,
-      'XL': 8,
-      'XXL': 8
+      'L': 4,
+      'XL': 4,
+      'XXL': 4
     }
   },
   {
@@ -25,7 +25,7 @@ export const products: Product[] = [
     name: 'Eternal Rose Hoodie',
     description: 'Elegance in full bloom. Celebrate the timeless beauty of roses with this artfully designed hoodie, perfect for any casual look.',
     price: 800,
-    discountPrice: 600,
+    discountPrice: 600, // Discounted price added
     images: [
       '/images/products/Rose/2-rose.png',
       
@@ -34,9 +34,9 @@ export const products: Product[] = [
     gender: 'unisex',
     color: 'black',
     stock: {
-      'L': 15,
-      'XL': 10,
-      'XXL': 5
+      'L': 4,
+      'XL': 4,
+      'XXL': 4
     }
   },
   {
@@ -44,7 +44,7 @@ export const products: Product[] = [
     name: 'Beacon of Hope Hoodie',
     description: 'Carry the light of hope wherever you go with this powerful design—a symbol of strength and perseverance.',
     price: 800,
-    discountPrice: 600,
+    discountPrice: 600, // Discounted price added
     images: [
       // '/images/products/hoodie2-front.jpg',
       '/images/products/Hope/3-Hope.png'
@@ -54,9 +54,9 @@ export const products: Product[] = [
     gender: 'unisex',
     color: 'black',
     stock: {
-      'L': 8,
-      'XL': 8,
-      'XXL': 8
+      'L': 4,
+      'XL': 4,
+      'XXL': 4
     }
   },
   {
@@ -64,7 +64,7 @@ export const products: Product[] = [
     name: 'Wild Moon Hoodie',
     description: 'Unleash your spirit with the Wild Moon Hoodie,where celestial vibes meet untamed adventure.',
     price: 800,
-    discountPrice: 600,
+    discountPrice: 600, // Discounted price added
     images: [
       // '/images/products/hoodie2-front.jpg',
       '/images/products/staywild/4-stay_wild.png'
@@ -74,9 +74,9 @@ export const products: Product[] = [
     gender: 'unisex',
     color: 'black',
     stock: {
-      'L': 8,
-      'XL': 8,
-      'XXL': 8
+      'L': 4,
+      'XL': 4,
+      'XXL': 4
     }
   }
 ];

@@ -10,7 +10,6 @@ interface CartItem {
 interface CartState {
   items: CartItem[];
   total: number;
-  shippingCost: number;
 }
 
 type CartAction =
@@ -28,28 +27,35 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_TO_CART': {
       const { product, size } = action.payload;
-      const price = product.discountPrice || product.price;
       const existingItemIndex = state.items.findIndex(
         item => item.product.id === product.id && item.selectedSize === size
       );
 
       if (existingItemIndex > -1) {
+        // If the item already exists in the cart, update the quantity
         const updatedItems = [...state.items];
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
-          quantity: updatedItems[existingItemIndex].quantity + 1,
+          quantity: updatedItems[existingItemIndex].quantity + 1
         };
+        const newTotal = updatedItems.reduce((total, item) => {
+          const price = item.product.discountPrice || item.product.price;
+          return total + price * item.quantity;
+        }, 0);
+
         return {
           ...state,
           items: updatedItems,
-          total: state.total + price,
+          total: newTotal
         };
       }
 
+      // If the item does not exist, add it to the cart
+      const price = product.discountPrice || product.price;
       return {
         ...state,
         items: [...state.items, { product, quantity: 1, selectedSize: size }],
-        total: state.total + price,
+        total: state.total + price
       };
     }
 
@@ -61,14 +67,18 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
       if (!itemToRemove) return state;
 
-      const price = itemToRemove.product.discountPrice || itemToRemove.product.price;
+      const updatedItems = state.items.filter(
+        item => !(item.product.id === productId && item.selectedSize === size)
+      );
+      const newTotal = updatedItems.reduce((total, item) => {
+        const price = item.product.discountPrice || item.product.price;
+        return total + price * item.quantity;
+      }, 0);
 
       return {
         ...state,
-        items: state.items.filter(
-          item => !(item.product.id === productId && item.selectedSize === size)
-        ),
-        total: state.total - price * itemToRemove.quantity,
+        items: updatedItems,
+        total: newTotal
       };
     }
 
@@ -76,31 +86,27 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       const { productId, size, quantity } = action.payload;
       const updatedItems = state.items.map(item => {
         if (item.product.id === productId && item.selectedSize === size) {
-          const price = item.product.discountPrice || item.product.price;
-          const priceDiff = (quantity - item.quantity) * price;
           return { ...item, quantity };
         }
         return item;
       });
 
-      const newTotal = updatedItems.reduce(
-        (total, item) =>
-          total + (item.product.discountPrice || item.product.price) * item.quantity,
-        0
-      );
+      const newTotal = updatedItems.reduce((total, item) => {
+        const price = item.product.discountPrice || item.product.price;
+        return total + price * item.quantity;
+      }, 0);
 
       return {
         ...state,
         items: updatedItems,
-        total: newTotal,
+        total: newTotal
       };
     }
 
     case 'CLEAR_CART':
       return {
         items: [],
-        total: 0,
-        shippingCost: state.shippingCost,
+        total: 0
       };
 
     default:
@@ -108,9 +114,8 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   }
 };
 
-
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, { items: [], total: 0,shippingCost: 50 });
+  const [state, dispatch] = useReducer(cartReducer, { items: [], total: 0 });
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>

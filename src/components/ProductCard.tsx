@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ImageSlider from './ImageSlider';
 import { Product, Size } from '../types';
 import { useCart } from '../context/CartContext';
+import { useStock } from '../context/StockContext';
 
 interface ProductCardProps {
   product: Product;
@@ -9,22 +10,48 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { dispatch } = useCart();
+  const { stock } = useStock();
   const [selectedSize, setSelectedSize] = useState<Size | null>(null);
+  const [stockError, setStockError] = useState<string | null>(null);
+  const currentStock = stock[product.id];
+
+  // Calculate discounted price if exists
+  const discountedPrice = product.discountPrice
+    ? product.discountPrice
+    : product.price;
+
+  // Calculate the discount percentage
+  const discountPercentage = product.discountPrice
+    ? ((product.price - product.discountPrice) / product.price) * 100
+    : 0;
 
   const handleAddToCart = () => {
-    if (selectedSize) {
+    if (!selectedSize) return;
+
+    const availableStock = currentStock[selectedSize];
+    const cartDispatch = () => {
       dispatch({
         type: 'ADD_TO_CART',
-        payload: { product, size: selectedSize },
+        payload: { product, size: selectedSize }
       });
-      setSelectedSize(null); // Reset size selection after adding to cart
+      setSelectedSize(null);
+      setStockError(null);
+    };
+
+    try {
+      if (availableStock <= 0) {
+        setStockError(`Size ${selectedSize} is out of stock`);
+        return;
+      }
+      cartDispatch();
+    } catch (error) {
+      if (error instanceof Error) {
+        setStockError(error.message);
+      } else {
+        setStockError('An error occurred while adding to cart');
+      }
     }
   };
-
-  // Calculate the offer percentage
-  const offerPercentage = product.discountPrice
-    ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
-    : null;
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -35,21 +62,31 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="p-4">
         <h3 className="text-lg font-semibold">{product.name}</h3>
         <p className="text-gray-600 mt-1">{product.description}</p>
-
-        {/* Pricing Section */}
-        <div className="mt-2">
+        
+        {/* Display price and discount */}
+        <div className="flex items-center gap-2 mt-2">
           {product.discountPrice ? (
-            <div className="flex items-center space-x-2">
-              <p className="text-lg font-bold">{product.discountPrice} EGP</p>
-              <p className="text-sm font-bold text-red-500 line-through">{product.price} EGP</p>
-              {offerPercentage && (
-                <p className="text-sm font-bold text-green-600">({offerPercentage}% OFF)</p>
-              )}
-            </div>
+            <>
+              <p className="text-sm font-bold text-red-400 line-through">
+                {product.price} EGP
+              </p>
+              <p className="text-sm font-bold ">
+                {product.discountPrice} EGP
+              </p>
+              <p className="text-xs font-bold text-green-500">
+                {discountPercentage.toFixed(0)}% OFF
+              </p>
+            </>
           ) : (
-            <p className="text-lg font-bold">{product.price} EGP</p>
+            <p className="text-sm font-bold">{product.price} EGP</p>
           )}
         </div>
+
+        {stockError && (
+          <div className="mt-2 p-2 bg-red-100 border border-red-400 text-red-700 text-sm rounded">
+            {stockError}
+          </div>
+        )}
 
         <div className="mt-3">
           <p className="text-sm font-medium">Available Sizes:</p>
@@ -57,17 +94,25 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.sizes.map((size) => (
               <div key={size} className="flex items-center">
                 <button
-                  onClick={() => setSelectedSize(size)}
-                  disabled={product.stock[size] === 0}
+                  onClick={() => {
+                    setSelectedSize(size);
+                    setStockError(null);
+                  }}
+                  disabled={currentStock[size] === 0}
                   className={`px-3 py-1.5 text-sm border rounded-md transition-colors ${
                     selectedSize === size
-                      ? 'bg-blue-500 text-white border-blue-500'
-                      : product.stock[size] === 0
+                      ? currentStock[size] > 0
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-900 text-white border-blue-600'
+                        : 'bg-red-500 text-white border-red-500'
+                      : currentStock[size] === 0
                       ? 'text-red-500 border-gray-200 cursor-not-allowed'
                       : 'hover:bg-gray-50 border-gray-300'
                   }`}
                 >
-                  {product.stock[size] === 0 ? `${size} Sold Out` : `${size}`}
+                  {currentStock[size] === 0
+                    ? `${size} - Sold Out`
+                    : `${size}`}
+                    {/* : `${size} (${currentStock[size]} left)`} */}
                 </button>
               </div>
             ))}
