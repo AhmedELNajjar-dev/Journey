@@ -28,7 +28,7 @@ export default function Footer() {
                 </a>
                  {/* WhatsApp Icon */}
                  <a
-                  href="https://wa.me/201117571023" // Replace 'your-number' with WhatsApp number (e.g., 1234567890)
+                  href="https://wa.me/201159733443" // Replace 'your-number' with WhatsApp number (e.g., 1234567890)
                   className="hover:text-green-500 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"

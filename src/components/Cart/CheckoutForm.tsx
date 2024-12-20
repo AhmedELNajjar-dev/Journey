@@ -64,7 +64,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
     `Shipping: ${state.shippingCost.toFixed(2)} EGP\n` +
     `Total: ${(state.total + state.shippingCost).toFixed(2)} EGP`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/201117571023?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/201159733443?text=${encodedMessage}`;
 
     dispatch({ type: 'CLEAR_CART' });
     onClose();
