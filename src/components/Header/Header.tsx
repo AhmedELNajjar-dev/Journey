@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Ruler } from 'lucide-react';
+import { Ruler,RotateCcw } from 'lucide-react';
 import { FilterOptions } from '../../types';
 import SearchBar from './SearchBar';
 import FilterDropdown from './FilterDropdown';
@@ -16,7 +16,14 @@ interface HeaderProps {
 export default function Header({ filters, setFilters }: HeaderProps) {
   const [isSizeChartOpen, setIsSizeChartOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-
+  const resetFilters = () => {
+    setFilters({
+      gender: '',
+      size: '',
+      color: '',
+      searchQuery: ''
+    });
+  };
   return (
     <>
       <header className="bg-gradient-to-r from-blue-950 via-blue-400 to-blue-950 sticky top-0 z-40 shadow-md">
@@ -57,7 +64,7 @@ export default function Header({ filters, setFilters }: HeaderProps) {
             />
           </div>
 
-          <div className="hidden sm:flex mt-4 gap-4 justify-center">
+          <div className="hidden sm:flex mt-4 gap-4 justify-center pr-20">
             <FilterDropdown
               label="Gender"
               value={filters.gender}
@@ -91,6 +98,14 @@ export default function Header({ filters, setFilters }: HeaderProps) {
               ]}
               onChange={(value) => setFilters({ ...filters, color: value })}
             />
+            {/* place here button for reset filters*/}
+            <button
+          onClick={resetFilters}
+          className="  pl-2 pr-2   py-1 flex items-center justify-between bg-red-500 text-white hover:bg-red-600 rounded-lg transition-colors"
+>
+            <span className="">Reset Filters</span> {/* Add margin-right to the text */}
+            <RotateCcw className="ml-2"size={20} />
+          </button>
           </div>
         </div>
       </header>

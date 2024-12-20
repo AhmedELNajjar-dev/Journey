@@ -15,11 +15,16 @@ export default function ProductCard({ product }: ProductCardProps) {
     if (selectedSize) {
       dispatch({
         type: 'ADD_TO_CART',
-        payload: { product, size: selectedSize }
+        payload: { product, size: selectedSize },
       });
       setSelectedSize(null); // Reset size selection after adding to cart
     }
   };
+
+  // Calculate the offer percentage
+  const offerPercentage = product.discountPrice
+    ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
+    : null;
 
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -30,7 +35,21 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="p-4">
         <h3 className="text-lg font-semibold">{product.name}</h3>
         <p className="text-gray-600 mt-1">{product.description}</p>
-        <p className="text-lg font-bold mt-2">{product.price} EGP</p>
+
+        {/* Pricing Section */}
+        <div className="mt-2">
+          {product.discountPrice ? (
+            <div className="flex items-center space-x-2">
+              <p className="text-lg font-bold">{product.discountPrice} EGP</p>
+              <p className="text-sm font-bold text-red-500 line-through">{product.price} EGP</p>
+              {offerPercentage && (
+                <p className="text-sm font-bold text-green-600">({offerPercentage}% OFF)</p>
+              )}
+            </div>
+          ) : (
+            <p className="text-lg font-bold">{product.price} EGP</p>
+          )}
+        </div>
 
         <div className="mt-3">
           <p className="text-sm font-medium">Available Sizes:</p>
@@ -44,13 +63,12 @@ export default function ProductCard({ product }: ProductCardProps) {
                     selectedSize === size
                       ? 'bg-blue-500 text-white border-blue-500'
                       : product.stock[size] === 0
-                      ? `text-red-500 border-gray-200 cursor-not-allowed`
-                      : `hover:bg-gray-50 border-gray-300`
+                      ? 'text-red-500 border-gray-200 cursor-not-allowed'
+                      : 'hover:bg-gray-50 border-gray-300'
                   }`}
                 >
-                  {product.stock[size] === 0 ? `${size} Sold Out` : `${size}`} 
+                  {product.stock[size] === 0 ? `${size} Sold Out` : `${size}`}
                 </button>
-               
               </div>
             ))}
           </div>

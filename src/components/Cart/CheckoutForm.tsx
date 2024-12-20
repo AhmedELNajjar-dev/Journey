@@ -55,14 +55,14 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
       .join('\n');
 
     const message = `New Order:\n\n` +
-      `Customer Details:\n` +
-      `Name: ${formData.name}\n` +
-      `Phone: ${formData.phone}\n` +
-      `Address: ${formData.address}\n` +
-      `Additional Info: ${formData.additionalInfo}\n\n` +
-      `Order Items:\n${orderDetails}\n\n` +
-      `Total: ${state.total} EGP`;
-
+    `Customer Details:\n` +
+    `Name: ${formData.name}\n` +
+    `Phone: ${formData.phone}\n` +
+    `Address: ${formData.address}\n` +
+    `Additional Info: ${formData.additionalInfo}\n\n` +
+    `Order Items:\n${orderDetails}\n\n` +
+    `Shipping: ${state.shippingCost.toFixed(2)} EGP\n` +
+    `Total: ${(state.total + state.shippingCost).toFixed(2)} EGP`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/201117571023?text=${encodedMessage}`;
 
@@ -82,13 +82,14 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
       .join('\n');
 
     const message = `New Order:\n\n` +
-      `Customer Details:\n` +
-      `Name: ${formData.name}\n` +
-      `Phone: ${formData.phone}\n` +
-      `Address: ${formData.address}\n` +
-      `Additional Info: ${formData.additionalInfo}\n\n` +
-      `Order Items:\n${orderDetails}\n\n` +
-      `Total: ${state.total} EGP`;
+    `Customer Details:\n` +
+    `Name: ${formData.name}\n` +
+    `Phone: ${formData.phone}\n` +
+    `Address: ${formData.address}\n` +
+    `Additional Info: ${formData.additionalInfo}\n\n` +
+    `Order Items:\n${orderDetails}\n\n` +
+    `Shipping: ${state.shippingCost.toFixed(2)} EGP\n` +
+    `Total: ${(state.total + state.shippingCost).toFixed(2)} EGP`;
 
     const encodedMessage = encodeURIComponent(message);
     const instagramUrl = `https://ig.me/m/a.mamdouh_elnajjar_?text=${encodedMessage}`;
@@ -107,14 +108,14 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
       .join('\n');
 
     const message = `New Order:\n\n` +
-      `Customer Details:\n` +
-      `Name: ${formData.name}\n` +
-      `Phone: ${formData.phone}\n` +
-      `Address: ${formData.address}\n` +
-      `Additional Info: ${formData.additionalInfo}\n\n` +
-      `Order Items:\n${orderDetails}\n\n` +
-      `Total: ${state.total} EGP`;
-
+    `Customer Details:\n` +
+    `Name: ${formData.name}\n` +
+    `Phone: ${formData.phone}\n` +
+    `Address: ${formData.address}\n` +
+    `Additional Info: ${formData.additionalInfo}\n\n` +
+    `Order Items:\n${orderDetails}\n\n` +
+    `Shipping: ${state.shippingCost.toFixed(2)} EGP\n` +
+    `Total: ${(state.total + state.shippingCost).toFixed(2)} EGP`;
     navigator.clipboard.writeText(message).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -238,7 +239,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
         </div>
         <div className="ml-5 flex items-center mb-2">
   <Truck className="w-5 h-5 text-blue-500 flex-shrink-0" />
-  <p className="ml-3 text-gray-500 text-xs">Delivery within 1-6 working days. Shipping fees calculated with order confirmationx</p>
+  <p className="ml-3 text-gray-500 text-xs">Delivery within 1-6 working days.</p>
   
 </div>
 

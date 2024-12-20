@@ -7,6 +7,8 @@ interface SizeChartModalProps {
 }
 
 export default function SizeChartModal({ isOpen, onClose }: SizeChartModalProps) {
+  const sizeChartImageUrl = '/images/size-chart.png'; // Path to your size chart image
+
   if (!isOpen) return null;
 
   return (
@@ -30,9 +32,9 @@ export default function SizeChartModal({ isOpen, onClose }: SizeChartModalProps)
           <h2 className="text-2xl font-bold mb-4">Size Chart</h2>
           <div className="rounded-lg overflow-hidden">
             <img 
-              src="/images/size-chart.jpg" 
+              src={sizeChartImageUrl} 
               alt="Hoodie Size Chart" 
-              className="w-full h-auto"
+              className="w-full h-auto max-w-lg mx-auto"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = 'https://placehold.co/800x600/e2e8f0/64748b?text=Size+Chart+Coming+Soon';

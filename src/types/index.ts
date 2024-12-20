@@ -7,6 +7,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
+  discountPrice?: number; // Optional property for discounted price
   images: string[];
   sizes: Size[];
   gender: 'male' | 'female' | 'unisex';
