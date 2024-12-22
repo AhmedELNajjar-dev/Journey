@@ -6,6 +6,10 @@ export default {
         primary: '#1E40AF', // Custom blue
         secondary: '#FBBF24', // Custom yellow
       },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(90deg, theme("colors.slate.950"), theme("colors.blue.950"), theme("colors.slate.950"))',
+
+      },
     },
   },
   plugins: [],

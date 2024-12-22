@@ -54,12 +54,12 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+    <div className="bg-black rounded-xl shadow-lg overflow-hidden">
       <div className="relative aspect-square overflow-hidden">
         <ImageSlider images={product.images} productName={product.name} />
       </div>
 
-      <div className="p-4">
+      <div className="bg-white p-4">
         <h3 className="text-lg font-semibold">{product.name}</h3>
         <p className="text-gray-600 mt-1">{product.description}</p>
         
