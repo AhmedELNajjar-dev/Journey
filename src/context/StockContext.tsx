@@ -4,15 +4,6 @@ import { products } from '../data/products';
 
 type StockState = Record<string, Record<Size, number>>;
 
-type StockAction = {
-  type: 'DECREMENT_STOCK';
-  payload: {
-    productId: string;
-    size: Size;
-    quantity: number;
-  };
-};
-
 const initialStock: StockState = products.reduce((acc, product) => {
   acc[product.id] = product.stock;
   return acc;
@@ -20,37 +11,17 @@ const initialStock: StockState = products.reduce((acc, product) => {
 
 const StockContext = createContext<{
   stock: StockState;
-  dispatch: React.Dispatch<StockAction>;
 } | null>(null);
 
-const stockReducer = (state: StockState, action: StockAction): StockState => {
-  switch (action.type) {
-    case 'DECREMENT_STOCK': {
-      const { productId, size, quantity } = action.payload;
-      const currentStock = state[productId][size];
-      
-      if (currentStock < quantity) {
-        throw new Error(`Insufficient stock. Only ${currentStock} items available.`);
-      }
-
-      return {
-        ...state,
-        [productId]: {
-          ...state[productId],
-          [size]: currentStock - quantity
-        }
-      };
-    }
-    default:
-      return state;
-  }
+const stockReducer = (state: StockState): StockState => {
+  return state; // No actions required for stock in this reducer
 };
 
 export const StockProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [stock, dispatch] = useReducer(stockReducer, initialStock);
+  const [stock] = useReducer(stockReducer, initialStock);
 
   return (
-    <StockContext.Provider value={{ stock, dispatch }}>
+    <StockContext.Provider value={{ stock }}>
       {children}
     </StockContext.Provider>
   );

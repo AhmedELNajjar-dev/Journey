@@ -20,7 +20,8 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
 
   const updateQuantity = (productId: string, size: Size, newQuantity: number) => {
     const currentStock = stock[productId][size];
-    
+    const productName = state.items.find(item => item.product.id === productId)?.product.name;
+  
     if (newQuantity <= 0) {
       dispatch({
         type: 'REMOVE_FROM_CART',
@@ -28,18 +29,19 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
       });
       return;
     }
-
+  
     if (newQuantity > currentStock) {
-      setStockError(`Only ${currentStock} items available in size ${size}`);
+      setStockError(`Only ${currentStock} items of "${productName}" are available in size ${size}`);
       return;
     }
-
+  
     setStockError(null);
     dispatch({
       type: 'UPDATE_QUANTITY',
       payload: { productId, size, quantity: newQuantity }
     });
   };
+  
 
   const removeItem = (productId: string, size: Size) => {
     dispatch({
