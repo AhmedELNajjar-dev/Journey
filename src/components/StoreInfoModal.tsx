@@ -33,10 +33,10 @@ export default function StoreInfoModal({ isOpen, onClose }: StoreInfoModalProps)
             
             <div className="space-y-2"> {/*it was 6*/}
               <div className="flex items-start gap-4">
-                <Truck className="flex-shrink-0 w-6 h-6 text-blue-500" />
+                <Truck className="flex-shrink-0 w-6 h-6 text-sky-950" />
                 <div>
                   <h3 className="font-semibold text-lg">Shipping Information</h3>
-                  <p className="text-gray-600">Shipping fees calculated with order confirmation </p>
+                  <p className="text-gray-600">Shipping fees are 50 Egp </p>
                   <p className="text-gray-600">Estimated delivery within 1-6 working days</p>
                 </div>
               </div>
@@ -56,7 +56,7 @@ export default function StoreInfoModal({ isOpen, onClose }: StoreInfoModalProps)
               </div>
 
               <div className="flex items-start gap-4">
-                <Banknote className="flex-shrink-0 w-6 h-6 text-blue-500" />
+                <Banknote className="flex-shrink-0 w-6 h-6 text-sky-950" />
                 <div>
                   <h3 className="font-semibold text-lg">Payment</h3>
                   <p className="text-gray-600">Cash on delivery available</p>

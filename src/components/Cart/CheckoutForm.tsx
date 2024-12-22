@@ -328,14 +328,14 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
         </div>
 
         <div className="ml-5 flex items-center mb-2">
-          <Truck className="w-5 h-5 text-blue-500 flex-shrink-0" />
+          <Truck className="w-5 h-5 text-sky-950 flex-shrink-0" />
           <p className="ml-3 text-gray-500 text-xs">
             Delivery within 1-6 working days.
           </p>
         </div>
 
         <div className="ml-5 flex items-center mb-2">
-          <Banknote className="w-5 h-5 text-blue-500 flex-shrink-0" />
+          <Banknote className="w-5 h-5 text-sky-950 flex-shrink-0" />
           <p className="ml-3 text-gray-500 text-xs">Cash on delivery</p>
         </div>
 
