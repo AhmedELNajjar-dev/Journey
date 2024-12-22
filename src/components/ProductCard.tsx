@@ -54,23 +54,23 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-black rounded-xl shadow-lg overflow-hidden">
+    <div className="rounded-xl shadow-lg overflow-hidden">
       <div className="relative aspect-square overflow-hidden">
         <ImageSlider images={product.images} productName={product.name} />
       </div>
 
-      <div className="bg-white p-4">
-        <h3 className="text-lg font-semibold">{product.name}</h3>
-        <p className="text-gray-600 mt-1">{product.description}</p>
+      <div className=" p-4">
+        <h3 className="text-lg text-white font-semibold">{product.name}</h3>
+        <p className="text-white mt-1">{product.description}</p>
         
         {/* Display price and discount */}
         <div className="flex items-center gap-2 mt-2">
           {product.discountPrice ? (
             <>
-              <p className="text-sm font-bold text-red-400 line-through">
+              <p className="text-sm font-bold text-red-500 line-through">
                 {product.price} EGP
               </p>
-              <p className="text-sm font-bold ">
+              <p className="text-sm text-white font-bold ">
                 {product.discountPrice} EGP
               </p>
               <p className="text-xs font-bold text-green-500">
@@ -78,7 +78,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </p>
             </>
           ) : (
-            <p className="text-sm font-bold">{product.price} EGP</p>
+            <p className="text-sm  text white font-bold">{product.price} EGP</p>
           )}
         </div>
 
@@ -89,7 +89,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
 
         <div className="mt-3">
-          <p className="text-sm font-medium">Available Sizes:(Choose size)</p>
+          <p className="text-sm text-white font-medium">Available Sizes:(Choose size)</p>
           <div className="flex flex-wrap gap-2 mt-1">
             {product.sizes.map((size) => (
               <div key={size} className="flex items-center">
@@ -99,14 +99,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                     setStockError(null);
                   }}
                   disabled={currentStock[size] === 0}
-                  className={`px-3 py-1.5 text-sm border rounded-md transition-colors ${
+                  className={`px-3 py-1.5 text-sm text-white border-2 shadow-lg rounded-md transition-colors ${
                     selectedSize === size
                       ? currentStock[size] > 0
-                        ? 'bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white border-slate-900'
-                        : 'bg-red-500 text-white border-red-500'
+                        ? 'bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white border-blue-800 shadow-xl scale-105'  // Brighter background, border, and shadow
+                        : 'bg-red-500 text-black border-red-500'
                       : currentStock[size] === 0
                       ? 'text-red-500 border-gray-200 cursor-not-allowed'
-                      : 'hover:bg-gray-50 border-gray-300'
+                      : 'hover:bg-blue-500 border-black-300'
                   }`}
                 >
                   {currentStock[size] === 0
@@ -122,10 +122,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         <button
           onClick={handleAddToCart}
           disabled={!selectedSize}
-          className={`mt-4 w-full py-2 px-4 rounded-lg transition-all duration-200 ${
+          className={`mt-4 w-full py-2 px-4 border-2 rounded-lg transition-all duration-200 ${
             selectedSize
-              ? 'bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white hover:opacity-90'
-              : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              ? 'bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white border-blue-800 shadow-xl scale-105 text-white hover:opacity-90'
+              : 'bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white cursor-not-allowed'
           }`}
         >
           {selectedSize ? 'Add to Cart' : 'Select a Size'}
