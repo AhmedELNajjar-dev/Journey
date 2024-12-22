@@ -364,7 +364,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
           </button>
         </div>
 
-        <p className="items-center text-xs text-red-500 mt-2 text-center">
+        <p className="items-center font-bold text-xs text-red-500 mt-2 text-center">
           *Press copy to copy info and paste it into Ig DMs*
         </p>
       </form>
