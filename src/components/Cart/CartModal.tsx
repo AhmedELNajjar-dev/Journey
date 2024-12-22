@@ -61,7 +61,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-hidden">
-        <div className="p-4 border-b flex justify-between items-center bg-gradient-to-r from-blue-950 via-blue-400 to-blue-950 text-white">
+        <div className="p-4 border-b flex justify-between items-center bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white">
           <h2 className="text-xl font-bold flex items-center">
             <ShoppingBag className="mr-2" /> Shopping Cart
           </h2>
@@ -158,7 +158,7 @@ export default function CartModal({ isOpen, onClose }: CartModalProps) {
 
                     <button
                       onClick={() => setShowCheckout(true)}
-                      className="mt-4 px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-900 text-white rounded-lg hover:opacity-90 transition-opacity"
+                      className="mt-4 px-6 py-2 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white rounded-lg hover:opacity-90 transition-opacity"
                     >
                       Proceed to Checkout
                     </button>

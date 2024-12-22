@@ -44,7 +44,7 @@ export default function MobileMenu({ filters, setFilters, onSizeChartClick }: Mo
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="p-4 bg-gradient-to-r from-cyan-500 to-blue-500">
+        <div className="p-4 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950">
           <div className="flex justify-between items-center">
           <h2 className="text-xl font-bold text-white">Filters</h2>
           {/* Reset Filters Button */}
@@ -116,7 +116,7 @@ export default function MobileMenu({ filters, setFilters, onSizeChartClick }: Mo
               onSizeChartClick();
               setIsOpen(false);
             }}
-            className="bg-gradient-to-r from-cyan-500 to-blue-500 w-full mt-4 px-4 py-3 flex items-center justify-between text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+            className="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 w-full mt-4 px-4 py-3 flex items-center justify-between text-white hover:bg-red-500 rounded-lg transition-colors"
           >
           
             <span>Size Chart</span>

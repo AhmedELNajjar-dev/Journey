@@ -188,7 +188,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
     <div className="p-4">
       <button
         onClick={onBack}
-        className="mb-4 flex items-center bg-blue-600 text-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2 px-6 rounded-full shadow-lg transition-all duration-300"
+        className="mb-4 flex items-center bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 py-2 px-6 rounded-full shadow-lg transition-all duration-300"
       >
         <ArrowLeft size={20} className="mr-2" />
         Back to Cart
@@ -358,7 +358,7 @@ export default function CheckoutForm({ onBack, onClose }: CheckoutFormProps) {
           <button
             type="button"
             onClick={handleCopyMessage}
-            className="flex items-center py-2 px-4 bg-gradient-to-r from-blue-600 to-indigo-900 text-white rounded-lg hover:opacity-90 transition-opacity"
+            className="flex items-center py-2 px-4 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 text-white rounded-lg hover:opacity-90 transition-opacity"
           >
             {copied ? 'Copied!' : 'Copy'}
           </button>
