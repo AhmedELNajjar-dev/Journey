@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ImageSliderProps {
   images: string[];
   productName: string;
-  onLoad?: () => void; // Add onLoad as an optional prop
+  onLoad?: () => void;
 }
 
 export default function ImageSlider({ images, productName, onLoad }: ImageSliderProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loadedImages, setLoadedImages] = useState<number[]>([]);
-  const [isLoading, setIsLoading] = useState(true); // Track slider loading state
+  const [isLoading, setIsLoading] = useState(true);
+  const [touchOffset, setTouchOffset] = useState(0); // To track the offset of the touch
+  const touchStartX = useRef(0); // For tracking touch start position
 
   useEffect(() => {
     if (loadedImages.length === images.length) {
@@ -27,16 +29,38 @@ export default function ImageSlider({ images, productName, onLoad }: ImageSlider
     setCurrentImageIndex(nextIndex);
   };
 
-  const nextImage = () =>
-    changeImage((currentImageIndex + 1) % images.length);
+  const nextImage = () => changeImage((currentImageIndex + 1) % images.length);
 
   const prevImage = () =>
-    changeImage(
-      currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1
-    );
+    changeImage(currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1);
+
+  // Touch event handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setTouchOffset(0); // Reset touch offset when starting a new touch
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const touchMoveX = e.touches[0].clientX;
+    setTouchOffset(touchMoveX - touchStartX.current); // Track the distance moved
+  };
+
+  const handleTouchEnd = () => {
+    if (touchOffset > 50) {
+      prevImage(); // Swipe right (previous image)
+    } else if (touchOffset < -50) {
+      nextImage(); // Swipe left (next image)
+    }
+    setTouchOffset(0); // Reset offset after the swipe ends
+  };
 
   return (
-    <div className="relative overflow-hidden bg-gray-100 aspect-square">
+    <div
+      className="relative overflow-hidden bg-gray-100 aspect-square"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
           <div className="w-8 h-8 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
@@ -46,7 +70,7 @@ export default function ImageSlider({ images, productName, onLoad }: ImageSlider
       <div
         className="flex w-full h-full transition-transform duration-300 ease-out"
         style={{
-          transform: `translateX(-${currentImageIndex * 100}%)`,
+          transform: `translateX(-${currentImageIndex * 100 + (touchOffset / window.innerWidth) * 100}%)`,
         }}
       >
         {images.map((src, idx) => (
@@ -57,7 +81,7 @@ export default function ImageSlider({ images, productName, onLoad }: ImageSlider
             className={`w-full h-full object-cover flex-shrink-0 ${
               loadedImages.includes(idx) ? "opacity-100" : "opacity-0"
             } transition-opacity duration-300`}
-            onLoad={() => handleImageLoad(idx)} // Track each image load
+            onLoad={() => handleImageLoad(idx)}
           />
         ))}
       </div>
