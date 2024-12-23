@@ -12,13 +12,13 @@ export const products: Product[] = [
       '/images/products/Art/1-art.png',
       // '/images/products/Art/1-art-2.jpg'
     ],
-    sizes: ['L', 'XL', 'XXL'],
+    sizes: ['M', 'L', 'XL'],
     gender: 'unisex',
     color: 'black',
     stock: {
+      'M': 4,
       'L': 4,
-      'XL': 4,
-      'XXL': 4
+      'XL': 4
     }
   },
   {
@@ -33,13 +33,13 @@ export const products: Product[] = [
       
       
     ],
-    sizes: ['L', 'XL', 'XXL'],
+    sizes: ['M', 'L', 'XL'],
     gender: 'unisex',
     color: 'black',
     stock: {
+      'M': 4,
       'L': 4,
-      'XL': 4,
-      'XXL': 4
+      'XL': 4
     }
   },
   {
@@ -54,13 +54,13 @@ export const products: Product[] = [
       // '/images/products/Hope/3-Hope-2.jpg'
       // '/images/products/hoodie2-back.jpg'
     ],
-    sizes: ['L', 'XL', 'XXL'],
+    sizes: ['M', 'L', 'XL'],
     gender: 'unisex',
     color: 'black',
     stock: {
+      'M': 4,
       'L': 4,
-      'XL': 4,
-      'XXL': 4
+      'XL': 4
     }
   },
   {
@@ -75,13 +75,13 @@ export const products: Product[] = [
       // '/images/products/staywild/4-stay_wild-2.jpg'
       // '/images/products/hoodie2-back.jpg'
     ],
-    sizes: ['L', 'XL', 'XXL'],
+    sizes: ['M', 'L', 'XL'],
     gender: 'unisex',
     color: 'black',
     stock: {
+      'M': 4,
       'L': 4,
-      'XL': 4,
-      'XXL': 4
+      'XL': 4
     }
   }
 ];
