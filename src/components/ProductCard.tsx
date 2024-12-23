@@ -13,14 +13,17 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { stock } = useStock();
   const [selectedSize, setSelectedSize] = useState<Size | null>(null);
   const [stockError, setStockError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true); // Loading state for images
   const currentStock = stock[product.id];
 
-  // Calculate discounted price if exists
+  const handleImageLoad = () => {
+    setLoading(false); // Set loading to false when all images are loaded
+  };
+
   const discountedPrice = product.discountPrice
     ? product.discountPrice
     : product.price;
 
-  // Calculate the discount percentage
   const discountPercentage = product.discountPrice
     ? ((product.price - product.discountPrice) / product.price) * 100
     : 0;
@@ -56,21 +59,29 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="rounded-xl shadow-lg overflow-hidden">
       <div className="relative aspect-square overflow-hidden">
-        <ImageSlider images={product.images} productName={product.name} />
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+            <div className="w-8 h-8 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+          </div>
+        )}
+        <ImageSlider
+          images={product.images}
+          productName={product.name}
+          onLoad={handleImageLoad} // Trigger when all images are loaded
+        />
       </div>
 
-      <div className=" p-4">
+      <div className="p-4">
         <h3 className="text-lg text-white font-semibold">{product.name}</h3>
         <p className="text-white mt-1">{product.description}</p>
-        
-        {/* Display price and discount */}
+
         <div className="flex items-center gap-2 mt-2">
           {product.discountPrice ? (
             <>
               <p className="text-sm font-bold text-red-500 line-through">
                 {product.price} EGP
               </p>
-              <p className="text-sm text-white font-bold ">
+              <p className="text-sm text-white font-bold">
                 {product.discountPrice} EGP
               </p>
               <p className="text-xs font-bold text-green-500">
@@ -78,7 +89,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </p>
             </>
           ) : (
-            <p className="text-sm  text white font-bold">{product.price} EGP</p>
+            <p className="text-sm text-white font-bold">{product.price} EGP</p>
           )}
         </div>
 
@@ -89,7 +100,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
 
         <div className="mt-3">
-          <p className="text-sm text-white font-medium">Available Sizes:(Choose size)</p>
+          <p className="text-sm text-white font-medium">Available Sizes: (Choose size)</p>
           <div className="flex flex-wrap gap-2 mt-1">
             {product.sizes.map((size) => (
               <div key={size} className="flex items-center">
@@ -102,7 +113,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   className={`px-3 py-1.5 text-sm text-white border-2 shadow-lg rounded-md transition-colors ${
                     selectedSize === size
                       ? currentStock[size] > 0
-                        ? 'bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white border-blue-800 shadow-xl scale-105'  // Brighter background, border, and shadow
+                        ? 'bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white border-blue-800 shadow-xl scale-105'
                         : 'bg-red-500 text-black border-red-500'
                       : currentStock[size] === 0
                       ? 'text-red-500 border-gray-200 cursor-not-allowed'
@@ -112,7 +123,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                   {currentStock[size] === 0
                     ? `${size} - Sold Out`
                     : `${size}`}
-                    {/* : `${size} (${currentStock[size]} left)`} */}
                 </button>
               </div>
             ))}
