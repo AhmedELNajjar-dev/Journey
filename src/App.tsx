@@ -69,8 +69,8 @@ function App() {
       <main className="container mx-auto px-4 py-8">
         {filteredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <h2 className="text-2xl font-semibold text-gray-600">No products found</h2>
-            <p className="text-gray-500 mt-2">Try adjusting your filters or search query</p>
+            <h2 className="text-2xl font-semibold text-white">No products found</h2>
+            <p className="text-white mt-2">Try adjusting your filters or search query</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
