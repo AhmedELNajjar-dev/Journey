@@ -66,7 +66,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-6 pt-8 border-t border-gray-800 text-center text-white-400">
-            <p>© {new Date().getFullYear()} Journey. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Mylz. All rights reserved.</p>
           </div>
         </div>
       </footer>
