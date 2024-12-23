@@ -9,7 +9,8 @@ export const products: Product[] = [
     discountPrice: 600, // Discounted price added
     images: [
       
-      '/images/products/Art/1-art.png'
+      '/images/products/Art/1-art.png',
+      '/images/products/Art/1-art-2.jpg'
     ],
     sizes: ['L', 'XL', 'XXL'],
     gender: 'unisex',
@@ -28,6 +29,8 @@ export const products: Product[] = [
     discountPrice: 600, // Discounted price added
     images: [
       '/images/products/Rose/2-rose.png',
+      '/images/products/Rose/2-rose-2.jpg'
+      
       
     ],
     sizes: ['L', 'XL', 'XXL'],
@@ -47,7 +50,8 @@ export const products: Product[] = [
     discountPrice: 600, // Discounted price added
     images: [
       // '/images/products/hoodie2-front.jpg',
-      '/images/products/Hope/3-Hope.png'
+      '/images/products/Hope/3-Hope.png',
+      '/images/products/Hope/3-Hope-2.jpg'
       // '/images/products/hoodie2-back.jpg'
     ],
     sizes: ['L', 'XL', 'XXL'],
@@ -67,7 +71,8 @@ export const products: Product[] = [
     discountPrice: 600, // Discounted price added
     images: [
       // '/images/products/hoodie2-front.jpg',
-      '/images/products/staywild/4-stay_wild.png'
+      '/images/products/staywild/4-stay_wild.png',
+      '/images/products/staywild/4-stay_wild-2.jpg'
       // '/images/products/hoodie2-back.jpg'
     ],
     sizes: ['L', 'XL', 'XXL'],
